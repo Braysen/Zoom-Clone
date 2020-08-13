@@ -1,31 +1,52 @@
+
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid');
 const myVideo = document.createElement('video'); //Validado
 myVideo.muted = true;
 
+var peer = new Peer(undefined, {
+    path: '/peerjs',
+    host: '/',
+    port: '3030'
+});
+
 let myVideoStream
 navigator.mediaDevices.getUserMedia({
     video: true,
-    audio: true
+    audio: false
 }).then(stream => {
     myVideoStream = stream;
     addVideoStream(myVideo,stream);
+
+    peer.on('call', call => {
+        call.answer(stream)
+        const video = document.createElement('video')
+        call.on('stream', userVideoStream => {
+            addVideoStream(video, userVideoStream)
+        })
+    })
+
+    socket.on('user-connected', (userId) => {
+        connecToNewUser(userId , stream);    
+    })//Validado
 })//Validado
 
-socket.emit('join-room',ROOM_ID);
+peer.on('open', id => {
+    socket.emit('join-room',ROOM_ID,id);//Validado
+})//Validado
 
-socket.on('user-connected', () => {
-    connecToNewUser();    
-})
-
-const connecToNewUser = () => {
-    console.log('new user');
-}
+const connecToNewUser = (userId , stream) => {
+    const call = peer.call(userId, stream);
+    const video = document.createElement('video')
+    call.on('stream', userVideoStream => {
+        addVideoStream(video , userVideoStream)
+    })
+}//Validado
 
 const addVideoStream = (video, stream) => {
     video.srcObject = stream;
     video.addEventListener('loadedmetadata', () => {
-        video.play()
+        video.play();
     })
     videoGrid.append(video);
 }//Validado
