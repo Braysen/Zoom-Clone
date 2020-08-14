@@ -11,20 +11,25 @@ app.set('view engine', 'ejs');//Validado
 app.use(express.static('public'));
 
 app.use('/peerjs', peerServer);
-app.get('/', (req,res) => { //Validado
+app.get('/', (req,res) => { 
     res.redirect(`/${uuidv4()}`);  
-})
+})//Validado
 
-app.get('/:room',(req,res) => {//Validado
+app.get('/:room',(req,res) => {
     res.render('room', { roomId: req.params.room})
-})
+})//Validado
 
 io.on('connection', socket => {
     socket.on('join-room' , (roomId, userId) => {
         socket.join(roomId);
         socket.to(roomId).broadcast.emit('user-connected', userId);
+        socket.on('message', message => {
+            io.to(roomId).emit('createMessage', message)
+        })
+
+
     })
-})
+})//Validado
 
 
-server.listen(3030);
+server.listen(3030);//cambiar process.env.PORT||3030

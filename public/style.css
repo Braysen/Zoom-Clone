@@ -85,6 +85,7 @@ video{
 
 .main__chat_window{
     flex-grow: 1;
+    overflow-y: auto;
 }/*validado*/
 
 .main__message_container{
@@ -98,3 +99,12 @@ video{
     border: none;
     color: #f5f5f5;
 }/*validado*/
+
+.messages{
+    color: white;
+    list-style: none;
+}
+
+.unmute, .stop{
+    color: #cc3833;
+}
