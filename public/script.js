@@ -44,7 +44,7 @@ navigator.mediaDevices.getUserMedia({
     socket.on('createMessage', message => {
         //console.log('this is coming from server',message)
         console.log("Create message",message)
-        $('.messages').append(`<li class="message"><b>Usuario</b><br/>${message}</li>`);
+        $('.messages').append(`<li class="message" style="color: gray;"><b style="color: black;">Usuario</b><br/>${message}</li>`);
         scrollToBottom()
     })
 
