@@ -23,13 +23,15 @@ io.on('connection', socket => {
     socket.on('join-room' , (roomId, userId) => {
         socket.join(roomId);
         socket.to(roomId).broadcast.emit('user-connected', userId);
-        socket.on('message', message => {
+        socket.on('message', (message) => {
             io.to(roomId).emit('createMessage', message)
+        });
+        
+        socket.on('disconnect', () => {
+            socket.to(roomId).broadcast.emit('user-disconnected', userId)
         })
-
-
     })
 })//Validado
 
 
-server.listen(3030);//cambiar process.env.PORT||3030
+server.listen(9000);//cambiar process.env.PORT||3030

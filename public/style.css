@@ -58,6 +58,13 @@ video{
     cursor: pointer;
 }/*validado*/
 
+.main__controls__button #logo_empresa{
+    width: 50px;
+    height: 50px;
+    background-image: url(./logo.png);
+    background-size: cover;
+}
+
 .main__controls__button i{
     font-size: 24px;
 }

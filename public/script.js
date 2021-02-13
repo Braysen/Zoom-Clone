@@ -1,5 +1,5 @@
 //2:55:47
-
+//bnp8++C!ekQ2fs9
 const socket = io('/');//Validado
 const videoGrid = document.getElementById('video-grid');
 const myVideo = document.createElement('video'); 
@@ -8,7 +8,7 @@ myVideo.muted = true;
 var peer = new Peer(undefined, {
     path: '/peerjs',
     host: '/',
-    port: '3030'
+    port: '9000'
 });//Validado
 
 let myVideoStream
@@ -18,6 +18,7 @@ navigator.mediaDevices.getUserMedia({
 }).then(stream => {
     myVideoStream = stream;
     addVideoStream(myVideo,stream);
+    
 
     peer.on('call', call => {
         call.answer(stream)
@@ -28,7 +29,7 @@ navigator.mediaDevices.getUserMedia({
     })
 
     socket.on('user-connected', (userId) => {
-        connecToNewUser(userId , stream);    
+        connecToNewUser(userId , stream);
     })//Validado
 
     let text = $('input')
@@ -43,9 +44,8 @@ navigator.mediaDevices.getUserMedia({
     socket.on('createMessage', message => {
         //console.log('this is coming from server',message)
         console.log("Create message",message)
-        $('.messages').append(`<li class="message"><b>user</b><br/>${message}</li>`);
+        $('.messages').append(`<li class="message"><b>Usuario</b><br/>${message}</li>`);
         scrollToBottom()
-
     })
 
 })//Validado
