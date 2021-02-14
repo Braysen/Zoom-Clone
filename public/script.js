@@ -33,11 +33,14 @@ navigator.mediaDevices.getUserMedia({
     })//Validado
 
     let text = $('input')
+    let text1 = $('#chat_messages').val();
 
     $('html').keydown((e) => {
-        if(e.which == 13 && text.val().length !== 0){
+        if(e.which == 13 && text.val().length !== 0 || e.which == 13 && text1.val().length !== 0){
             socket.emit('message', text.val());
+            socket.emit('message', text1.val());
             text.val('')
+            text1.val('')
         }
     });//Validado
 
