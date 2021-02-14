@@ -21,7 +21,7 @@
     --logo-empresa-height: 50px;
     --main-controls-button-font-size: 24px;
     --padding-main-message-container: 22px 12px;
-    --width-video: 400px;
+    --width-video: 300px;/*400px*/
     --height-video: 300px;
 }
 
@@ -64,6 +64,8 @@ video{
     display: var(--display-option);
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
+    z-index: 0;
 }
 
 .main__controls{
@@ -72,6 +74,8 @@ video{
     color: var(--color-main-controls-2);
     padding: 5px;
     justify-content: space-between;
+    z-index: 100;
+    bottom: 0px;
 }
 
 .main__controls__block{
@@ -161,8 +165,18 @@ button{
         --display-option-2: flex;
     }
 
+    #video-grid{
+        display: var(--display-option);
+    }
+
     #chat-button{
         display: none;
+    }
+}
+
+@media screen and (max-width: 901px){
+    #video-grid{
+        display: grid;
     }
 }
 

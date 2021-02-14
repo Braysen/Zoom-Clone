@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="%PUBLIC_URL%/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zoom Clone</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,10 +12,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
     
     <script>
         const ROOM_ID = "<%= roomId %>";
@@ -24,11 +26,11 @@
     <div class="main">
         <div class="main__left">
             <div class="main__videos">
-                <div id="video-grid" style="display: grid;">
+                <div id="video-grid">
 
                 </div>
             </div>
-            <div class="main__controls" style="z-index: 10;">
+            <div class="main__controls">
                 <div class="main__controls__block">
                     <div  onclick="muteUnmute()" class="main__controls__button main__mute_button">
                         <i class="fas fa-microphone"></i>
@@ -67,16 +69,17 @@
             <div class="main__header">
                 <h6>Chat</h6>
             </div>
-            <!--
+            
             <div class="main__chat_window">
                 <ul class="messages">
 
                 </ul>
             </div>
+            <!---
             <div class="main__message_container">
                 <input id="chat_message" type="text" placeholder="Type message here...">
-            </div>
-        -->
+            </div>-->
+        
         </div>
     </div>
     
